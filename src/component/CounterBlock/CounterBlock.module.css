@@ -1,0 +1,14 @@
+.counterBlock {
+    background-color: #6aced7;
+    border-radius: 5px;
+    font-weight: 500;
+    color: #5e5465;
+    padding: 40px 0;
+    width: 350px;
+    font-size: 80px;
+    margin-bottom: 10px;
+}
+
+.maxValue {
+    color: #e54d4d;
+}
