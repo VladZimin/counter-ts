@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react'
+import s from './App.module.css'
+import {CounterBlock} from './component/CounterBlock'
+import {ButtonsBlock} from './component/ButtonsBlock'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export const App = () => {
+    const [value, setValue] = useState<number>(0)
+
+    const onIncHandler = () => setValue((value) => ++value)
+    const onResetHandler = () => setValue(0)
+    const maxValueError = value === 5
+    const resetValue = value === 0
+    return (
+        <>
+            <div className={s.container}>
+                <CounterBlock value={value} error={maxValueError}/>
+                <ButtonsBlock onClickInc={onIncHandler} onClickReset={onResetHandler} resetDisabled={resetValue}
+                              incDisabled={maxValueError}/>
+            </div>
+            <div className={s.container}>
+                <CounterBlock value={value} error={maxValueError}/>
+                <ButtonsBlock onClickInc={onIncHandler} onClickReset={onResetHandler} resetDisabled={resetValue}
+                              incDisabled={maxValueError}/>
+            </div>
+        </>
+
+    )
 }
 
-export default App;
+
+
+
+
+
+
