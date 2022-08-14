@@ -25,7 +25,6 @@ export const CounterBlock: FC<PropsType> =
                               onClickReset={onClickReset}
                               incDisabled={incDisabled}
                               resetDisabled={resetDisabled}
-                              isChangingSettings={isChangingSettings}
                 />
             </div>
         )
