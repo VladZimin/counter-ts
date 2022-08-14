@@ -4,17 +4,24 @@ import './App.css'
 import {SettingsBlock} from './component/SettingsBlock'
 
 export const App = () => {
-    const [maxValue, setMaxValue] = useState<number>(5)
-    const [startValue, setStartValue] = useState<number>(2)
-    const [value, setValue] = useState<number>(startValue)
-    const [isChangingSettings, setIsChangingSettings] = useState<boolean>(false)
+    const [maxValue, setMaxValue] = useState(5)
+    const [startValue, setStartValue] = useState(0)
+    const [counterValue, setCounterValue] = useState(startValue)
+    const [isChangingSettings, setIsChangingSettings] = useState(false)
 
+    // Get values from LocalStorage and set them to State
     useEffect(() => {
-        setValue(startValue)
-    }, [isChangingSettings])
+        const localStorageValue = localStorage.getItem('settingsValues')
+        if (localStorageValue) {
+            const {maxValue, startValue} = (JSON.parse(localStorageValue))
+            setStartValue(startValue)
+            setMaxValue(maxValue)
+            setCounterValue(startValue)
+        }
+    }, [])
 
-    const onIncHandler = () => setValue((value) => ++value)
-    const onResetHandler = () => setValue(startValue)
+    const onIncHandler = () => setCounterValue((value) => ++value)
+    const onResetHandler = () => setCounterValue(startValue)
 
     const onChangeMaxValue = (value: string) => {
         setMaxValue(+value)
@@ -24,27 +31,45 @@ export const App = () => {
         setStartValue(+value)
         setIsChangingSettings(true)
     }
+
+    //Set values to LocalStorage, change settings status and set value to counter state
     const onClickSet = () => {
+        localStorage.setItem('settingsValues', JSON.stringify({maxValue, startValue}))
         setIsChangingSettings(false)
+        setCounterValue(startValue)
     }
 
-    const incrementError = value === maxValue
-    const resetValue = value === startValue
+    // Disabled buttons for Counter Block
+    const incrementDisabled = counterValue === maxValue
+    const resetDisabled = counterValue === startValue
 
-    const maxValueError = maxValue < 0 || maxValue < startValue || maxValue === startValue
-    const startValueError = startValue < 0 || maxValue < startValue || maxValue === startValue
-    const isSetBtnDisabled = !isChangingSettings || (maxValueError || startValueError)
-    const errorInfo = (maxValueError || startValueError) && 'Invalid values!'
+    // Validation inputs for Settings Block
+    const compareMaxStart = maxValue < startValue || maxValue === startValue
+    const startValueError = startValue < 0 || compareMaxStart
+    const isSetBtnDisabled = !isChangingSettings || (compareMaxStart || startValueError)
+    const errorInfo = (compareMaxStart || startValueError) && 'Invalid values!'
 
     return (
         <>
-            <SettingsBlock maxValue={maxValue} startValue={startValue} onChangeStartValue={onChangeStartValue}
-                           onChangeMaxValue={onChangeMaxValue} onClickSet={onClickSet}
-                           isSetBtnDisabled={isSetBtnDisabled} startValueError={startValueError}
-                           maxValueError={maxValueError}/>
-            <CounterBlock onClickInc={onIncHandler} onClickReset={onResetHandler} resetDisabled={resetValue}
-                          incDisabled={incrementError} value={value} error={incrementError}
-                          isChangingSettings={isChangingSettings} errorInfo={errorInfo}/>
+            <SettingsBlock
+                maxValue={maxValue}
+                maxValueError={compareMaxStart}
+                startValue={startValue}
+                startValueError={startValueError}
+                onChangeMaxValue={onChangeMaxValue}
+                onChangeStartValue={onChangeStartValue}
+                onClickSet={onClickSet}
+                isSetBtnDisabled={isSetBtnDisabled}
+            />
+            <CounterBlock
+                value={counterValue}
+                onClickInc={onIncHandler}
+                onClickReset={onResetHandler}
+                incDisabled={incrementDisabled}
+                resetDisabled={resetDisabled}
+                errorInfo={errorInfo}
+                isChangingSettings={isChangingSettings}
+            />
         </>
 
     )

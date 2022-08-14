@@ -1,22 +1,35 @@
-import React from 'react'
-import s from './ButtonsBlock.module.css'
-import {Button} from '../../Button'
-import {ButtonsBlockProps} from '../index'
+import React, {FC} from 'react'
+import {Button} from '../../CustomButton'
 
-export const ButtonsBlock = (props: ButtonsBlockProps) => {
-
-    const incBtnDisabled = props.isChangingSettings || props.incDisabled
-    const resetBtnDisabled = props.isChangingSettings || props.resetDisabled
-
-    return (
-        <div className={s.buttonsBlock}>
-            <Button onClick={props.onClickInc}
-                    disabled={incBtnDisabled}>inc</Button>
-            <Button onClick={props.onClickReset}
-                    disabled={resetBtnDisabled}>reset</Button>
-        </div>
-    )
+export type ButtonsBlockProps = {
+    onClickInc: () => void
+    onClickReset: () => void
+    resetDisabled: boolean
+    incDisabled: boolean
+    isChangingSettings: boolean
 }
+
+export const ButtonsBlock: FC<ButtonsBlockProps> =
+    ({
+         isChangingSettings,
+         incDisabled,
+         resetDisabled,
+         onClickReset,
+         onClickInc
+     }) => {
+
+        const incBtnDisabled = isChangingSettings || incDisabled
+        const resetBtnDisabled = isChangingSettings || resetDisabled
+
+        return (
+            <div className={'buttonsBlock'}>
+                <Button onClick={onClickInc}
+                        disabled={incBtnDisabled}>INC</Button>
+                <Button onClick={onClickReset}
+                        disabled={resetBtnDisabled}>RESET</Button>
+            </div>
+        )
+    }
 
 
 

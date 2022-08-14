@@ -1,17 +1,36 @@
-import React from 'react'
-import s from '../CounterBlock.module.css'
-import {NumberBlockProps} from '../index'
+import React, {FC} from 'react'
+import s from './NumberBlock.module.css'
 
-export const NumberBlock = (props: NumberBlockProps) => {
-
-    const infoText = props.errorInfo ? props.errorInfo : 'enter values and press "SET"'
-    const spanClassName = `${(props.error || props.errorInfo) ? s.maxValue : ''} ${props.isChangingSettings && s.infoText}`
-    return <>
-        <div className={s.counterBlock}>
-            <span className={spanClassName}>{!props.isChangingSettings ? props.value : infoText}</span>
-        </div>
-    </>
+export type NumberBlockProps = {
+    value: number
+    incDisabled: boolean
+    errorInfo: string | boolean
+    isChangingSettings: boolean
 }
+
+export const NumberBlock: FC<NumberBlockProps> =
+    ({
+         isChangingSettings,
+         value,
+         incDisabled,
+         errorInfo
+     }) => {
+
+        const infoText = errorInfo
+            ? <span className={`${s.maxValueColor} ${s.infoText}`}>{errorInfo}</span>
+            : <span className={s.infoText}>enter values and press "SET"</span>
+        const spanClassName = `${incDisabled ? s.maxValueColor : ''}`
+
+        return <>
+            <div className={'contentBlock'}>
+                {
+                    !isChangingSettings
+                        ? <span className={spanClassName}>{value}</span>
+                        : infoText
+                }
+            </div>
+        </>
+    }
 
 
 

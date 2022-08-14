@@ -1,7 +1,6 @@
 import React, {FC} from 'react'
-import s from '../CounterBlock.module.css'
-import st from './InputsBlock.module.css'
-import CustomInput from '../../Input/CustomInput'
+import s from './InputsBlock.module.css'
+import CustomInput from '../../CustomInput'
 
 export type InputsBlockType = {
     maxValue: number
@@ -23,12 +22,14 @@ export const InputsBlock: FC<InputsBlockType> =
      }) => {
 
         return <>
-            <div className={s.counterBlock}>
-                <label>max value: <CustomInput value={maxValue} type={'number'} onChangeValue={onChangeMaxValue}
-                                               error={maxValueError} className={st.settingsInputs}/></label>
-                <label>start value: <CustomInput onChangeValue={onChangeStartValue} value={startValue}
-                                                 error={startValueError} type={'number'}
-                                                 className={st.settingsInputs}/></label>
+            <div className={'contentBlock'}>
+                <label className={s.labelsText}>max value: <CustomInput value={maxValue} type={'number'}
+                                                                        onChangeValue={onChangeMaxValue}
+                                                                        error={maxValueError}/></label>
+                <label className={s.labelsText}>start value: <CustomInput onChangeValue={onChangeStartValue}
+                                                                          value={startValue}
+                                                                          error={startValueError}
+                                                                          type={'number'}/></label>
             </div>
         </>
     }
