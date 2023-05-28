@@ -1,10 +1,10 @@
 import React, {FC} from 'react'
-import {InputsBlock, InputsBlockType} from './InputsBlock'
-import {SetBlock, SetBlockType} from './SetBlock'
+import {InputsBlock, InputsBlockType} from './InputsBlock/InputsBlock'
+import {SetBlock, SetBlockType} from './SetBlock/SetBlock'
 
 type SettingsBlockType = InputsBlockType & SetBlockType
 
-export const SettingsBlockRouter: FC<SettingsBlockType> =
+export const SettingsBlock: FC<SettingsBlockType> =
     ({
          maxValue,
          startValue,

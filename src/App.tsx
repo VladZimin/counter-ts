@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import './App.css'
-import {SettingsBlock} from './component/Counter/SettingsBlock'
-import {CounterBlock} from './component/Counter/CounterBlock'
+import {SettingsBlock} from './component/SettingsBlock/SettingsBlock'
+import {CounterBlock} from './component/CounterBlock/Counter'
 
 export const App = () => {
     const [maxValue, setMaxValue] = useState(5)
@@ -49,7 +49,7 @@ export const App = () => {
     const isSetBtnDisabled = !isChangingSettings || (compareMaxStart || startValueError)
     const errorInfo = (compareMaxStart || startValueError) && 'Invalid values!'
 
-    //~~~~ For Counter With Wouter ~~~~
+    //~~~~ For Counter With Router ~~~~
 
     /*const navigate = useNavigate()
     const isSetBtnDis = compareMaxStart || startValueError
@@ -85,14 +85,14 @@ export const App = () => {
                 isChangingSettings={isChangingSettings}
             />
             {/*<Routes>
-                <Route path={'/'} element={<CounterBlockRouter onClickInc={onIncHandler}
+                <Route path={'/'} element={<CounterWithRouter onClickInc={onIncHandler}
                                                                onClickReset={onResetHandler}
                                                                onClickSettings={onClickSettings}
                                                                resetDisabled={resetDisabled}
                                                                incDisabled={incrementDisabled}
                                                                value={counterValue}/>}
                 />
-                <Route path={'/settings'} element={<SettingsBlockRouter maxValue={maxValue} startValue={startValue}
+                <Route path={'/settings'} element={<SettingsWithRouter maxValue={maxValue} startValue={startValue}
                                                                         onChangeStartValue={onChangeStartValue}
                                                                         onChangeMaxValue={onChangeMaxValue}
                                                                         onClickSet={onClickSet2}

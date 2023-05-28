@@ -4,7 +4,7 @@ import {NumberBlock, NumberBlockProps} from './NumberBlock'
 
 type PropsType = ButtonsBlockProps & NumberBlockProps
 
-export const CounterBlockRouter: FC<PropsType> =
+export const CounterWithRouter: FC<PropsType> =
     ({
          onClickInc,
          onClickReset,

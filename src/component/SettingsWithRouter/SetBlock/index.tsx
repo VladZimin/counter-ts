@@ -1,5 +1,5 @@
 import React, {FC} from 'react'
-import {Button} from '../../../CustomButton'
+import {Button} from '../../CustomButton'
 
 export type SetBlockType = {
     onClickSet: () => void

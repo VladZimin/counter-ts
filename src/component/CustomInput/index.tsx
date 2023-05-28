@@ -3,12 +3,12 @@ import s from './CustomInput.module.css'
 
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 
-type SuperInputTextPropsType = DefaultInputPropsType & {
+type CustomInputTextPropsType = DefaultInputPropsType & {
     onChangeValue?: (value: string) => void
     error?: boolean
 }
 
-const CustomInput: React.FC<SuperInputTextPropsType> = (
+const CustomInput: React.FC<CustomInputTextPropsType> = (
     {
         error,
         className,

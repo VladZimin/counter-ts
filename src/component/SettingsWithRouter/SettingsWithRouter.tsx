@@ -4,7 +4,7 @@ import {SetBlock, SetBlockType} from './SetBlock'
 
 type SettingsBlockType = InputsBlockType & SetBlockType
 
-export const SettingsBlock: FC<SettingsBlockType> =
+export const SettingsWithRouter: FC<SettingsBlockType> =
     ({
          maxValue,
          startValue,

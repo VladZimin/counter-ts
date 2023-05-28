@@ -1,6 +1,6 @@
 import React, {FC} from 'react'
-import {ButtonsBlock, ButtonsBlockProps} from './ButtonsBlock'
-import {NumberBlock, NumberBlockProps} from './NumberBlock'
+import {ButtonsBlock, ButtonsBlockProps} from './ButtonsBlock/ButtonsBlock'
+import {NumberBlock, NumberBlockProps} from './NumberBlock/NumberBlock'
 
 type PropsType = ButtonsBlockProps & NumberBlockProps
 
