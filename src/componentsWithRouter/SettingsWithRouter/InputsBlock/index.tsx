@@ -1,6 +1,6 @@
 import React, {FC} from 'react'
 import s from './InputsBlock.module.css'
-import CustomInput from '../../CustomInput'
+import CustomInput from '../../../components/CustomInput'
 
 export type InputsBlockType = {
     maxValue: number

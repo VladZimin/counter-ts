@@ -1,5 +1,5 @@
 import React, {FC} from 'react'
-import {Button} from '../../CustomButton'
+import {CustomButton} from '../../../components/CustomButton'
 
 export type SetBlockType = {
     onClickSet: () => void
@@ -9,7 +9,7 @@ export type SetBlockType = {
 export const SetBlock: FC<SetBlockType> = ({onClickSet, isSetBtnDisabled}) => {
     return (
         <div className={'buttonsBlock'}>
-            <Button onClick={onClickSet} disabled={isSetBtnDisabled}>SET</Button>
+            <CustomButton onClick={onClickSet} disabled={isSetBtnDisabled}>SET</CustomButton>
         </div>
     )
 }

@@ -1,20 +1,22 @@
 import React, {FC} from 'react'
 import s from './NumberBlock.module.css'
+import {useSelector} from 'react-redux'
+import {RootStateType} from '../../../store/store'
 
 export type NumberBlockProps = {
-    value: number
+    counterValue: number
     incDisabled: boolean
-    errorInfo: string | boolean
     isChangingSettings: boolean
 }
 
 export const NumberBlock: FC<NumberBlockProps> =
     ({
-         isChangingSettings,
-         value,
+         counterValue,
          incDisabled,
-         errorInfo
+         isChangingSettings
      }) => {
+
+        const errorInfo = useSelector((state: RootStateType) => state.errorInfo)
 
         const infoText = errorInfo
             ? <span className={`${s.maxValueColor} ${s.infoText}`}>{errorInfo}</span>
@@ -25,7 +27,7 @@ export const NumberBlock: FC<NumberBlockProps> =
             <div className={'contentBlock'}>
                 {
                     !isChangingSettings
-                        ? <span className={spanClassName}>{value}</span>
+                        ? <span className={spanClassName}>{counterValue}</span>
                         : infoText
                 }
             </div>

@@ -1,5 +1,5 @@
 import React, {FC} from 'react'
-import {Button} from '../../CustomButton'
+import {CustomButton} from '../../../components/CustomButton'
 
 export type ButtonsBlockProps = {
     onClickInc: () => void
@@ -20,11 +20,11 @@ export const ButtonsBlock: FC<ButtonsBlockProps> =
 
         return (
             <div className={'buttonsBlock'}>
-                <Button onClick={onClickInc}
-                        disabled={incDisabled}>INC</Button>
-                <Button onClick={onClickReset}
-                        disabled={resetDisabled}>RESET</Button>
-                <Button onClick={onClickSettings}>SET</Button>
+                <CustomButton onClick={onClickInc}
+                              disabled={incDisabled}>INC</CustomButton>
+                <CustomButton onClick={onClickReset}
+                              disabled={resetDisabled}>RESET</CustomButton>
+                <CustomButton onClick={onClickSettings}>SET</CustomButton>
             </div>
         )
     }
