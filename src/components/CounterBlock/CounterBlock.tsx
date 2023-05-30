@@ -11,17 +11,17 @@ export const CounterBlock = () => {
     const maxValue = useSelector((state: RootStateType) => state.maxValue)
     const startValue = useSelector((state: RootStateType) => state.startValue)
     const isChangingSettings = useSelector((state: RootStateType) => state.isChangingSettings)
+
     const dispatch = useDispatch()
-
-    const incDisabled = isChangingSettings || (counterValue === maxValue)
-    const resetDisabled = isChangingSettings || (counterValue === startValue)
-
     const onIncHandler = () => {
         dispatch(incCounterAC())
     }
     const onResetHandler = () => {
         dispatch(resetCounterAC())
     }
+
+    const incDisabled = isChangingSettings || (counterValue === maxValue)
+    const resetDisabled = isChangingSettings || (counterValue === startValue)
 
     return (
         <div className={'container'}>

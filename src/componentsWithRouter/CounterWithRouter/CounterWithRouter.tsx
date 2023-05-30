@@ -1,32 +1,45 @@
-import React, {FC} from 'react'
-import {ButtonsBlock, ButtonsBlockProps} from './ButtonsBlock'
-import {NumberBlock, NumberBlockProps} from './NumberBlock'
+import React from 'react'
+import {useNavigate} from 'react-router-dom'
+import {CustomButton} from '../../components/CustomButton'
+import s from './CounterWithRouter.module.css'
+import {useDispatch, useSelector} from 'react-redux'
+import {RootStateType} from '../../store/store'
+import {incCounterAC, resetCounterAC} from '../../store/counterReducer'
 
-type PropsType = ButtonsBlockProps & NumberBlockProps
+export const CounterWithRouter = () => {
 
-export const CounterWithRouter: FC<PropsType> =
-    ({
-         onClickInc,
-         onClickReset,
-         incDisabled,
-         resetDisabled,
-         onClickSettings,
-         value
-     }) => {
-        return (
-            <div className={'container'}>
-                <NumberBlock value={value}
-                             incDisabled={incDisabled}
-                />
-                <ButtonsBlock onClickInc={onClickInc}
-                              onClickReset={onClickReset}
-                              incDisabled={incDisabled}
-                              resetDisabled={resetDisabled}
-                              onClickSettings={onClickSettings}
-                />
-            </div>
-        )
+    const navigate = useNavigate()
+    const maxValue = useSelector((state: RootStateType) => state.maxValue)
+    const startValue = useSelector((state: RootStateType) => state.startValue)
+    const counterValue = useSelector((state: RootStateType) => state.counterValue)
+
+    const dispatch = useDispatch()
+    const onClickSettings = () => {
+        navigate('/settings')
     }
+    const onIncHandler = () => {
+        dispatch(incCounterAC())
+    }
+    const onResetHandler = () => {
+        dispatch(resetCounterAC())
+    }
+
+    const incDisabled = counterValue === maxValue
+    const resetDisabled = counterValue === startValue
+
+    return <div className={'container'}>
+        <div className={`contentBlock ${s.counterRouter}`}>
+            <span className={incDisabled ? s.maxValueColor : ''}>{counterValue}</span>
+        </div>
+        <div className={'buttonsBlock'}>
+            <CustomButton onClick={onIncHandler}
+                          disabled={incDisabled}>INC</CustomButton>
+            <CustomButton onClick={onResetHandler}
+                          disabled={resetDisabled}>RESET</CustomButton>
+            <CustomButton onClick={onClickSettings}>SET</CustomButton>
+        </div>
+    </div>
+}
 
 
 

@@ -20,7 +20,6 @@ export const SettingsBlock = () => {
         dispatch(changeStartValueAC(Number(value)))
 
     }
-    //Set values to LocalStorage, change settings status and set value to counter state
     const onClickSet = () => {
         dispatch(setCounterValueAC())
 
