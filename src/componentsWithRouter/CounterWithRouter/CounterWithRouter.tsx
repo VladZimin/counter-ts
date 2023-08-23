@@ -9,9 +9,9 @@ import {incCounterAC, resetCounterAC} from '../../store/counterReducer'
 export const CounterWithRouter = () => {
 
     const navigate = useNavigate()
-    const maxValue = useSelector((state: RootStateType) => state.maxValue)
-    const startValue = useSelector((state: RootStateType) => state.startValue)
-    const counterValue = useSelector((state: RootStateType) => state.counterValue)
+    const maxValue = useSelector<RootStateType, number>((state: RootStateType) => state.maxValue)
+    const startValue = useSelector<RootStateType, number>((state: RootStateType) => state.startValue)
+    const counterValue = useSelector<RootStateType, number>((state: RootStateType) => state.counterValue)
 
     const dispatch = useDispatch()
     const onClickSettings = () => {
